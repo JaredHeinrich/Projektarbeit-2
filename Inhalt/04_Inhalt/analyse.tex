@@ -1,2 +1,63 @@
-\chapter{Aktueller Stand Benchmarking in der \acl{CE}}
-\section{Bestehende Werkzeuge zur Analyse von Performance}
+\chapter{Aktueller Stand der Performance Analyse in der \acl{CE}}
+Die \ac{CE} nutzt bereits verschiedene Wege um die Performance und das
+Verhalten der HANA Datenbank zu analysieren. 
+\section{Google Benchmark}
+\label{sec:google_benchmark}
+
+Google Benchmark ist ein Open Source Benchmarking Tool von Google,
+welches es einem ermöglicht einzelne Funktionen zu benchmarken. 
+
+Dazu kann man ähnlich zu den meisten Test Frameworks drei verschiedene Funktionen definieren.
+
+Die Hauptfunktion definiert was genau im Benchmark untersucht werden
+soll. Diese legt die für die Messung relevante Logik fest.
+
+Die Setup Funktion wird einmal vor jeder Ausführung der Hauptfunktion
+aufgerufen. In dieser werden die Voraussetzungen für die Ausführung der Hauptfunktion
+geschaffen. Man könnte sie beispielsweise nutzen, um Testdaten für den Benchmark
+zu generieren oder zu laden, da sie nicht bei den Messungen beachtet wird.
+
+Die Teardown Funktion wird nach jeder Ausführung der Hauptfunktion aufgerufen.
+Diese beeinflusst, wie die Setup Funktion, die Messung nicht.
+
+Des Weiteren bietet Google Benchmark die Option, einen Benchmark mehrmals mit
+unterschiedlichen Parametern durchzuführen. Um beispielsweise die Auswirkung
+der Größe des Testdatensatzes auf das Ergebnis zu beobachten.
+
+\autoref{fig:google_benchmark_ausgabe} zeigt eine Beispielhafte Google
+Benchmark Ausgabe. Benchmark ist dabei der Name des Benchmarks und hinter dem
+Schrägstrich die Größe des Inputs. Time ist die durchschnittliche Dauer einer
+Ausführung der Hauptfunktion über alle Iterationen hinweg. CPU ist die
+durchschnittliche CPU Zeit einer Ausführung der Hauptfunktion über alle
+Iterationen hinweg. Iterations ist die Anzahl der durchgeführten Iterationen,
+bis ein stabiler Durchschnittswert erreicht wurde. \autocite[Vgl.][]{GoogleBenchmark}
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{verbatim}
+---------------------------------------------------------------
+Benchmark                          Time         CPU Iterations
+---------------------------------------------------------------
+BM_RemoveDetachedNodes/2           4 us        4 us     189823 
+BM_RemoveDetachedNodes/8           9 us        9 us      78165 
+BM_RemoveDetachedNodes/64         58 us       58 us      12106 
+BM_RemoveDetachedNodes/512       469 us      468 us       1515 
+BM_RemoveDetachedNodes/4096     4237 us     4234 us        166 
+BM_RemoveDetachedNodes/8192    10026 us    10019 us         60 
+        \end{verbatim}
+    \end{center}
+    \caption{Google Benchmark Ausgabe}\label{fig:google_benchmark_ausgabe}
+\end{figure}
+
+Google Benchmark wird in der \ac{CE} meistens genutzt, um das Verhalten der
+Laufzeit bestimmter Funktionen in künstlich generierten Testfällen zu
+vergleichen. Hierbei wird jedoch keine HANA Instanz benötigt, da
+keine Operationen auf einer Datenbank ausgeführt werden. Es werden folglich
+auch keine Testdatensätze für die Datenbank benötigt, sondern nur Daten, auf
+welchen man die zu analysierende Methode aufrufen kann. Solche Performance
+Tests sind also im Vergleich zu Tests, welche auf eine HANA Instanz mit
+Testdatensätzen zugreifen, relativ einfach. Da sie sich weniger Voraussetzungen
+haben, und nur auf einen kleinen Teil der Logik fokussiert sind.
+
+\section{HANA Profiler}
+\label{sec:hana_profiler}

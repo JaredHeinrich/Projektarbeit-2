@@ -58,7 +58,7 @@
 % ------ Erklärung, Sperrvermerk, Abstact
 \include{Inhalt/01_Standard/erklaerung}
 \include{Inhalt/01_Standard/sperrvermerk}
-\include{Inhalt/02_Abstract/abstract-en}
+\include{Inhalt/02_Abstract/abstract-de}
 
 % ------ Inhaltsverzeichnis
 \singlespacing
@@ -92,18 +92,21 @@
 \include{Inhalt/04_Inhalt/verifikation}
 \include{Inhalt/04_Inhalt/fazit}
 
+% ---- Anhang
+\appendix
+\chapter{Anhang}
+Hier ist der Anhang
+%\clearpage
+%\pagenumbering{Roman}  % römische Seitenzahlen für Anhang
+
 % ---- Literaturverzeichnis
 \cleardoublepage
 \renewcommand*{\chapterpagestyle}{plain}
 \pagestyle{plain}
-\pagenumbering{Roman}                   % Römische Seitenzahlen
-\setcounter{page}{\numexpr\value{savepage}+1}
+%\pagenumbering{Roman}                   % Römische Seitenzahlen
+%\setcounter{page}{\numexpr\value{savepage}+1}
 \printbibliography[title=Literaturverzeichnis]
 
-% ---- Anhang
-\appendix
-%\clearpage
-%\pagenumbering{Roman}  % römische Seitenzahlen für Anhang
 
 \newpage
 \end{document}

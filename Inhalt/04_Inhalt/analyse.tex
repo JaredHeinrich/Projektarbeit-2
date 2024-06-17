@@ -61,12 +61,14 @@ Tests sind also im Vergleich zu Tests, welche auf eine HANA Instanz mit
 Testdatensätzen zugreifen, relativ einfach. Da sie sich weniger Voraussetzungen
 haben, und nur auf einen kleinen Teil der Logik fokussiert sind.
 
+% section Google Benchmark (end)
+
 \section{HANA Profiler}
 \label{sec:hana_profiler}
 
 
 Eine weitere Methode die Performance und das Verhalten von Software zu
-analysieren ist, das bereits in \autoref{sec:types_of_perf_analysis}
+analysieren ist, das bereits in \autoref{sec:arten_performance_analyse}
 beschriebene, Profiling. In der \ac{CE} wird ein eigener Profiler verwendet.
 Auf diesen kann entweder manuell oder im Code zugegriffen werden. Dabei sind
 die wichtigsten Befehle \texttt{profiler clear} um die aktuellen
@@ -74,30 +76,9 @@ Profilinginformationen zurückzusetzen,  \texttt{profiler start} um den Profiler
 zu starten, \texttt{profiler stop} um den Profiler zu stoppen und
 \texttt{profiler print} um die gesammelten Profilinginformationen auszugeben.
 
-\begin{definition}
-    Ein gerichteter Graph ist ein Tupel $G=(V,E)$. $V$ heißt Menge der Knoten.
-    $E$ heißt Menge der gerichteten Kanten. Es gilt $V\ne\emptyset$ und $E \subset V \times
-    V \setminus \{(v,v) | v \in V\}$. Zwischen zwei Knoten $u,v \in V$ gibt es
-    eine Kante mit dem Anfangspunkt $u$ und dem Endpunkt $v$, wenn $(u,v) \in E$.
-    Ein Pfad $P$ in $G$  ist eine Folge von Knoten $v_0, \dots ,v_n$. Dabei
-    muss $\forall i \in \{0, \dots, n-1 \} : (v_i,v_{i+1}) \in E$ gelten. $v_0$
-    heißt Anfangspunkt von $P$, $v_n$ heißt Endpunkt von $P$ und $n$ heißt
-    Länge von $P$. Ein Pfad heißt geschlossen, wenn $v_0 = v_n$. Ein
-    geschlossener Pfad heißt einfach, wenn $\forall i,j \in \{0,\dots,n-1\}, i
-    \ne j:v_i \ne v_j$ gilt. In einem gerichteten Graphen heißt ein einfach
-    geschlossener Pfad mit $n\geq 2$ auch Zyklus. Ein Graph heißt azyklisch,
-    wenn er keine Zyklen besitzt \autocite[Vgl.][S.221ff]{AlgorithmenUndDatenstrukturen}.
-    $G$ heißt gewichtet, wenn es eine Abbildung $g:E\rightarrow \mathbb{R}$
-    gibt, welche jeder Kante ein Gewicht zuordnet. Für $e\in E$ heißt $g(e)$
-    Gewicht von $e$ \autocite[Vgl.][S.253]{AlgorithmenUndDatenstrukturen}.
-    Für zwei Knoten $c$ und $p$ gilt, $c$ ist Kindknoten von $p$, wenn $(p,c)\in V$.
-    Umgekehrt gilt, wenn $(p,c)\in V$, $p$ ist Elternknoten von $c$.
-    $c$ ist Subknoten von $p$, wenn $\exists P: (v_0=p) \land (v_n=c)$.
-    \label{def:graph}
-\end{definition}
 
 Die Ausgabe erzeugt dabei ist dabei zwei gewichtete gerichtete azyklische
-Graphen, nach \autoref{def:graph}, von denen einer die Verteilung der CPU-Zeit und der andere die
+Graphen, nach \autoref{sec:grundlagen_graphentheorie}, von denen einer die Verteilung der CPU-Zeit und der andere die
 Verteilung der Wartezeit, der aufgerufenen Funktionen beinhaltet. Im Folgenden
 werden die beiden Graphen CPU-Graph und Warte-Graph genannt.
 \autoref{fig:beispielausgabe_hana_profiler} stellt eine mögliche Ausgabe des
@@ -117,3 +98,4 @@ wurden.
     \caption{Beispielausgabe des HANA Profilers}\label{fig:beispielausgabe_hana_profiler}
 \end{figure}
 
+% section HANA Profiler (end)

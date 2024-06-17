@@ -1,13 +1,76 @@
 \chapter{Grundlagen}
+
 \section{\acl{CE}}
+
 \section{Ausführung von Datenbankabfragen}
-\label{sec:execution_of_db_queries}
+\label{sec:ausfuehrung_db_queries}
 Datenbankabfragen werden in der \todo{Wo genau werden die Abfragen ausgeführt?
 Was gehört alles zur CalcEngine?} \ac{CE} in drei Schritten ausgeführt. Zuerst
 wird die Calculation View instanziiert. Anschließend wird dieses mithilfe
 verschiedener Methoden optimiert. Dieses optimierte Modell wird dann auf der
 Datenbank ausgeführt.
+
+% section Ausführung von Datenbankabfragen (end)
+
 \section{Verschiedene Arten von Performance Analyse}
-\label{sec:types_of_perf_analysis}
+\label{sec:arten_performance_analyse}
 \subsection*{Benchmarking}
 \subsection*{Profiling}
+
+% section Verschiedene Arten von Performance Analyse (end)
+
+\section{Notwendige Grundlagen aus der Graphentheorie}
+\label{sec:grundlagen_graphentheorie}
+
+\autoref{def:gerichteter_graph} gibt eine Definition für einen gerichteten
+Graphen nach \autocite[Vgl.][S.220]{AlgorithmenUndDatenstrukturen}.
+\begin{definition}
+    Ein gerichteter Graph ist ein Tupel $G=(V,E)$. $V$ heißt Menge der Knoten.
+    $E$ heißt Menge der gerichteten Kanten. Es gilt $V\ne\emptyset$ und $E \subset V \times
+    V \setminus \{(v,v) | v \in V\}$. Zwischen zwei Knoten $u,v \in V$ gibt es
+    eine Kante mit dem Anfangspunkt $u$ und dem Endpunkt $v$, wenn $(u,v) \in E$.
+    \label{def:gerichteter_graph}
+\end{definition}
+
+\autoref{def:pfad} gibt eine Definition für einen Pfad in einem Graphen nach
+\autocite[Vgl.][S.221f]{AlgorithmenUndDatenstrukturen}.
+\begin{definition}
+    Ein Pfad $P$ in $G$  ist eine Folge von Knoten $v_0, \dots ,v_n$. Dabei
+    muss $\forall i \in \{0, \dots, n-1 \} : (v_i,v_{i+1}) \in E$ gelten. $v_0$
+    heißt Anfangspunkt von $P$, $v_n$ heißt Endpunkt von $P$ und $n$ heißt
+    Länge von $P$.
+    \label{def:pfad}
+\end{definition}
+
+\autoref{def:zyklen} gibt nach
+\autocite[Vgl.][S.222]{AlgorithmenUndDatenstrukturen} eine Definition für
+Zyklen in einem gerichteten Graphen und definiert den Begriff des azyklischen
+Graphen.
+\begin{definition}
+    Ein Pfad heißt geschlossen, wenn $v_0 = v_n$. Ein
+    geschlossener Pfad heißt einfach, wenn $\forall i,j \in \{0,\dots,n-1\}, i
+    \ne j:v_i \ne v_j$ gilt. In einem gerichteten Graphen heißt ein einfach
+    geschlossener Pfad mit $n\geq 2$ auch Zyklus. Ein Graph heißt azyklisch,
+    wenn er keine Zyklen besitzt.
+    \label{def:zyklen}
+\end{definition}
+
+\autoref{def:gewichteter_graph} definiert den Begriff des gewichteten Graphen
+nach \autocite[Vgl.][S.253]{AlgorithmenUndDatenstrukturen}.
+\begin{definition}
+    $G$ heißt gewichtet, wenn es eine Abbildung $g:E\rightarrow \mathbb{R}$
+    gibt, welche jeder Kante ein Gewicht zuordnet. Für $e\in E$ heißt $g(e)$
+    Gewicht von $e$.
+    \label{def:gewichteter_graph}
+\end{definition}
+
+\autoref{def:child_parent} definiert die Begriffe Kindknoten, Elternknoten und
+Subknoten.
+\begin{definition}
+    Für zwei Knoten $c$ und $p$ gilt, $c$ ist Kindknoten von $p$, wenn $(p,c)\in V$.
+    Umgekehrt gilt, wenn $(p,c)\in V$, $p$ ist Elternknoten von $c$.
+    $c$ ist Subknoten von $p$, wenn $\exists P: (v_0=p) \land (v_n=c)$.
+    \label{def:child_parent}
+\end{definition}
+
+% section Notwendige Grundlagen aus der Graphentheorie (end)

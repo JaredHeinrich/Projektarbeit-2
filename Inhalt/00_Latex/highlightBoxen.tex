@@ -1,17 +1,3 @@
-% ---- Definition für Highlight Boxen
-
-% ---- Grundsätzliche Definition zum Style
-\newtheoremstyle{defi}
-  {\topsep}         % Abstand oben
-  {\topsep}         % Abstand unten
-  {\normalfont}     % Schrift des Bodys
-  {0pt}             % Einschub der ersten Zeile
-  {\bfseries}       % Darstellung von der Schrift in der Überschrift
-  {:}               % Trennzeichen zwischen Überschrift und Body
-  {.5em}            % Abstand nach dem Trennzeichen zum Body Text
-  {\thmname{#3}}    % Name in eckigen Klammern
-\theoremstyle{defi}
-
 % ------ Definition zum Strich vor eines Texts
 \newmdtheoremenv[
   hidealllines = true,       % Rahmen komplett ausblenden
@@ -35,3 +21,14 @@
     \draw[line width=3pt,gray!50,line cap=rect] (O-|P) -- +(0pt,1cm);
   }
 ]{defEckKasten}{Definition}  % Name der des formats "defEckKasten"
+
+\newmdtheoremenv[
+  hidealllines = true,
+  leftline = true,
+  innertopmargin = 0pt,
+  innerbottommargin = 4pt,
+  innerrightmargin = 0pt,
+  linewidth = 3pt,
+  linecolor = gray!40,
+  ]{definition}{Definition}[]
+\newcommand{\definitionautorefname}{Definition}

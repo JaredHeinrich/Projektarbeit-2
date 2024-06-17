@@ -1,0 +1,12 @@
+digraph Profiler {
+ratio=compress
+a [shape=record,label="{main|I=100%\nE=0%\n}",style=filled,fillcolor="#ff0000",fontname=sans];
+b [shape=record,label="{function_1|I=80%\nE=0%\n}",style=filled,fillcolor="#ff0000",fontname=sans];
+c [shape=record,label="{function_2|I=20%\nE=20%\n}",style=filled,fillcolor="#ffd3d3",fontname=sans];
+d [shape=record,label="{function_3|I=40%\nE=40%\n}",style=filled,fillcolor="#ffaaaa",fontname=sans];
+e [shape=record,label="{function_4|I=40%\nE=40%\n}",style=filled,fillcolor="#ffaaaa",fontname=sans];
+a -> b [label="80%", weight=10]
+a -> c [label="20%", weight=10]
+b -> d [label="50%", weight=10]
+b -> e [label="50%", weight=10]
+}

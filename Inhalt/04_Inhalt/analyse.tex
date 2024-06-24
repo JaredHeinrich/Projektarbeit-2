@@ -11,12 +11,10 @@ Codeabschnitte definieren.
 
 Der Hauptabschnitt definiert was genau im Benchmark untersucht werden
 soll. Diese legt die für die Messung relevante Logik fest.
-
 Der Setup Abschnitt wird einmal vor jeder Ausführung des Benchmarks
 aufgerufen. In dieser werden die Voraussetzungen für die Ausführung des Hauptabschnitts
 geschaffen. Man könnte sie beispielsweise nutzen, um Testdaten für den Benchmark
 zu generieren oder zu laden, da er nicht bei den Messungen beachtet wird.
-
 Der Teardown Abschnitt wird nach jeder Ausführung des Benchmarks aufgerufen.
 Dieser beeinflusst, wie der Setup Abschnitt, die Messung nicht.
 
@@ -55,14 +53,16 @@ BM_RemoveDetachedNodes/8192    10026 us    10019 us         60
 
 Google Benchmark wird in der \ac{CE} meistens genutzt, um das Verhalten der
 Laufzeit bestimmter Funktionen in künstlich generierten Testfällen zu
-vergleichen. Hierbei wird jedoch keine HANA Instanz benötigt, da
-keine Operationen auf einer Datenbank ausgeführt werden. Es werden folglich
+vergleichen. Hierbei wird keine HANA Instanz benötigt, da
+keine Operationen auf einer Datenbank ausgeführt werden, sondern nur einzelne
+Funktionen aufgerufen werden. Es werden folglich
 auch keine Testdatensätze für die Datenbank benötigt, sondern nur Daten, auf
-welchen man die zu analysierende Methode aufrufen kann. Solche Performance
-Tests sind also im Vergleich zu Tests, welche auf eine HANA Instanz mit
-Testdatensätzen zugreifen, relativ einfach. Da sie sich weniger Voraussetzungen
-haben, und nur auf einen kleinen Teil der Logik fokussiert sind.
+welchen man die zu analysierende Funktion aufrufen kann.
 
+Im Vergleich zu anderen Methoden der Performance Messung, die Operationen auf
+einer HANA-Instanz ausführen, ist ein Google Benchmark relativ einfach.
+Dies liegt daran, dass sie weniger Voraussetzungen erfordern und sich lediglich
+auf einen kleinen Teil der Logik konzentrieren.
 % section Google Benchmark (end)
 
 \section{HANA Profiler}
@@ -71,13 +71,20 @@ haben, und nur auf einen kleinen Teil der Logik fokussiert sind.
 
 Eine weitere Methode die Performance und das Verhalten von Software zu
 analysieren ist, das bereits in \autoref{sec:arten_performance_analyse}
-beschriebene, Profiling. In der \ac{CE} wird ein eigener Profiler verwendet.
-Auf diesen kann entweder manuell oder im Code zugegriffen werden. Dabei sind
-die wichtigsten Befehle \texttt{profiler clear} um die aktuellen
-Profilinginformationen zurückzusetzen,  \texttt{profiler start} um den Profiler
-zu starten, \texttt{profiler stop} um den Profiler zu stoppen und
-\texttt{profiler print} um die gesammelten Profilinginformationen auszugeben.
+beschriebene, Profiling.
 
+In der \ac{CE} wird hauptsächlich der \enquote{BOOSS-Profiler}, ein in HANA
+integrierter Profiler, verwendet. Auf diesen kann entweder manuell oder im Code
+zugegriffen werden. Dabei sind die wichtigsten Befehle \texttt{profiler clear}
+um die aktuellen Profilinginformationen zurückzusetzen,  \texttt{profiler
+start} um den Profiler zu starten, \texttt{profiler stop} um den Profiler zu
+stoppen und \texttt{profiler print} um die gesammelten Profilinginformationen
+auszugeben.
+
+Der Profiler kann in diesem Kontext auf zwei verschiedene Arten genutzt werden.
+Entweder in dem zur Laufzeit des Profilers Anfragen an eine bestehende
+HANA-Instanz gestellt werden. Oder der Profiler wird innerhalb eines Tests oder
+Benchmarks aufgerufen und es werden die dort aufgerufen Funktionen gemessen.
 
 Die Ausgabe erzeugt dabei ist dabei zwei gewichtete gerichtete azyklische
 Graphen, nach \autoref{sec:grundlagen_graphentheorie}, von denen einer die Verteilung der CPU-Zeit und der andere die
@@ -93,6 +100,7 @@ seinen Subknoten benötigt wurde. $E$ ist der Anteil der Gesamtzeit, welcher
 von diesem Knoten benötigt wurde. Folglich gilt für alle Knoten $I\geq E$.
 Die Kindknoten eines Knoten $K$ sind die Funktionen, welche von $K$ aufgerufen
 wurden.
+
 \begin{figure}[h]
     \begin{center}
         \includegraphics[page=1]{Bilder/pdf/profiler_output_example.pdf}

@@ -72,5 +72,44 @@ Subknoten.
     $c$ ist Subknoten von $p$, wenn $\exists P: (v_0=p) \land (v_n=c)$.
     \label{def:child_parent}
 \end{definition}
-
 % section Notwendige Grundlagen aus der Graphentheorie (end)
+
+\section{Statistische Grundlagen}
+\label{sec:statistische_grundlagen}
+% Metrisches Merkmal
+In \autoref{def:metrisches_merkmal} wird das metrische Merkmal nach
+\autocite[Vgl.][S.24]{Statistik} definiert.
+\begin{definition}
+    Bei einem metrisch skaliertem Merkmale werden einzelne Ausprägungen anhand
+    einer Zahlenskala bewertet, häufig in Verbindung mit einer Maßeinheit. Sie
+    lassen sich anhand der Größe ordnen und vergleichen. Außerdem kann man die
+    Abstände zwischen verschiedenen Ausprägungen messen und interpretieren.
+    \label{def:metrisches_merkmal}
+\end{definition}
+
+% Arithmetisches Mittel
+\autoref{def:durchschnitt} definiert die, im Kontext dieser Arbeit gleichbedeutenden, Begriffe
+Durchschnitt, Mittelwert und Arithmetisches Mittel nach \autocite[Vgl.][S.52f]{Statistik}.
+\begin{definition}
+    Das arithmetische Mittel von $n$ metrisch skalierten Beobachtungswerten
+    $x_1,\dots,x_n$, genannt $\bar{x}$. 
+
+    Es gilt: $\bar{x} = \frac{1}{n} \displaystyle\sum^{n}_{i=1}x_i$
+
+    \label{def:durchschnitt}
+\end{definition}
+
+% Varianz
+\autoref{def:varianz} beschreibt den Begriff der Varianz nach
+\autocite[Vgl.][S.399]{CorrelationBetweenRelatives}.
+\begin{definition}
+    Die empirische Varianz von $n$ metrisch skalierten Beobachtungswerten $x_1,
+    \dots, x_n$, genannt $\tilde{s}^2$, ist der Durchschnitt der quadratischen
+    Abweichung von $x_i$ von $\bar{x}$.
+
+    Es gilt: $\tilde{s}^2 = \frac{1}{n} \displaystyle\sum^{n}_{i=1}(x_i - \bar{x})^2 $
+    \label{def:varianz}
+\end{definition}
+% ?Standartabweichung?
+% ?Regression?
+% section Statistische Grundlagen (end)

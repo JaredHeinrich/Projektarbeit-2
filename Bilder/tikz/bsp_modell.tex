@@ -1,0 +1,31 @@
+\begin{tikzpicture}[
+    node distance = 1cm,
+    request/.style = {rectangle, draw, blue, minimum width=2cm, minimum height=0.8cm},
+    op_node/.style = {circle, draw, minimum size=1cm},
+    table_node/.style = {circle, draw, magenta, minimum size=1cm},
+    arrow/.style = {->, >=stealth}
+]
+
+% Nodes
+\node[request] (0) at (0,3) {Abfrage};
+\node[right=0.2cm of 0] {Aggregation};
+
+\node[op_node] (1) at (0,1) {1};
+\node[below=0.2cm of 1] {Join};
+
+\node[table_node] (2) at (-2,-1) {2};
+\node[below=0.2cm of 2] {Table};
+
+\node[op_node] (3) at (2,-1) {3};
+\node[right=0.2cm of 3] {Projection};
+
+\node[table_node] (4) at (2,-3) {4};
+\node[below=0.2cm of 4] {Table};
+
+% Arrows
+\draw[arrow] (0) -- (1);
+\draw[arrow] (1) to[out=210,in=90] (2);
+\draw[arrow] (1) to[out=-30,in=90] (3);
+\draw[arrow] (3) -- (4);
+
+\end{tikzpicture}

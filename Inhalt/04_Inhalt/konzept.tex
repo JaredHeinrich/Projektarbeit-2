@@ -1,6 +1,19 @@
 \chapter{Benchmarking-Konzept}
-\section{Messung}
-Um Informationen über die benötigte CPU-Zeit in
-verschiedenen Schritten der Optimierung herauszufinden, eignet sich der in
-\autoref{sec:hana_profiler} angesprochene Booss-Profiler sehr gut.
-\section{Testdaten}
+\section{Messung} % (fold)
+\label{sec:Messung}
+Um Messwerte sinnvoll miteinander vergleichen zu können, dürfen diese sich bis
+auf einen Parameter nicht unterscheiden. Bei der Analyse, wie sich verschiedene
+Modelle auf die Laufzeit der Optimierung von diesen auswirken, sind die Größe
+und der Aufbau des Modells als Parameter denkbar. Der Aufbau, im folgenden auch
+Art des Modells genannt, wird durch eine Funktion beschrieben, welche für einen
+Parameter $n$ ein Modell der Größe $n$ erzeugt. $n$ ist dabei nicht zwingend
+die Anzahl der Knoten im Modell, sondern könnte auch festlegen, wie
+oft ein bestimmtes Muster in dem Modell wiederholt wurde.
+
+Ist die Größe in einer Messreihe der veränderliche Parameter, muss der Aufbau
+des Modells unveränderlich sein.
+% section Messung (end)
+\section{Testdaten} % (fold)
+\label{sec:Testdaten}
+
+% section Testdaten (end)

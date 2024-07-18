@@ -1,4 +1,5 @@
 \chapter{Aktueller Stand der Performance Analyse in der \acl{CE}}
+\label{sec:analyse}
 In der \ac{CE} werden bereits verschiedene Wege genutzt, um die Performance und
 das Verhalten der HANA Datenbank zu analysieren. 
 \section{Google Benchmark}
@@ -24,13 +25,13 @@ der Größe des Testdatensatzes auf das Ergebnis zu beobachten.
 
 \autoref{fig:google_benchmark_ausgabe} zeigt eine Beispielhafte Google
 Benchmark Ausgabe. Benchmark ist dabei der Name des Benchmarks und hinter dem
-Schrägstrich die Größe des Inputs. Time ist die durchschnittliche Dauer einer
+Schrägstrich die Größe des Inputs. \foreignlanguage{english}{Time} ist die durchschnittliche Dauer einer
 Ausführung des Hauptabschnitts über alle Iterationen hinweg. CPU ist die
 durchschnittliche CPU Zeit einer Ausführung des Hauptabschnitts über alle
-Iterationen hinweg. Iterations ist die Anzahl der durchgeführten Wiederholungen
+Iterationen hinweg. \foreignlanguage{english}{Iterations} ist die Anzahl der durchgeführten Wiederholungen
 des Hauptabschnitts. Legt man keine Anzahl fest, wird die Anzahl der
 Wiederholungen anhand der durchschnittlichen Dauer einer Iteration und der
-Varianz der Dauer über alle Iterationen hinweg.
+Varianz der Dauer über alle Iterationen hinweg festgelegt.
 \autocite[Vgl.][]{GoogleBenchmark}
 
 \begin{figure}[h]

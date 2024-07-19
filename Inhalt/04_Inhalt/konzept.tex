@@ -52,9 +52,23 @@ verändern zu können. Auf die reellen Abfragen wird dabei zurückgegriffen, um
 die Relevanz der Messung, für reelle Szenarien zu gewährleisten.
 \autocite[Vgl.][S.500f]{ExperimentalAnalysis}
 
+Diese Messdaten werden genutzt, um festzustellen, wie sich die Laufzeit der
+Optimierung für Modelle bestimmter Art bei steigender Größe verhalten. Dabei
+ist besonders interessant, ob sich die Laufzeit zur Größe linear verhält,
+beziehungsweise ob es stärker oder schwächer ansteigt. Für die Optimierung des
+Algorithmus sind nun die Modellarten interessant, bei welchen die Laufzeit
+stärker als linear ansteigt, da diese Modellarten ein besonders hohes Potenzial
+haben lange Laufzeiten zu verursachen. Um genauer herauszufinden, in welchem
+Teil des Optimierungsalgorithmus besonders viel Zeit benötigt wurde, werden
+diese Modelle nochmals mithilfe des in \autoref{sec:arten_performance_analyse}
+beschriebenen Profilings untersucht. Dazu werden mehrere Modelle dieser Art
+optimiert, während der Profiler protokolliert, in welchen Methoden sich wie
+lange aufgehalten wurde. Anschließend muss beurteilt werden, ob die Zeit,
+welche in dieser Methode benötigt wird, erwartbar ist oder sie geringer sein
+sollte. Beziehungsweise, ob es eine Möglichkeit gibt diesen Teil des
+Algorithmus zu beschleunigen.
 
-
-Interessante Fälle genauer Betrachten Profiling um exakte Ursache zu ermitteln.
+\todo{Gehört nicht in Konzept}
 
 Da sich die Arbeit auf die Optimierungsfunktion der \ac{CE} beschränkt, kann
 sich auch bei den Messungen auf diese beschränkt werden.

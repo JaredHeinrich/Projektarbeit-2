@@ -1,0 +1,78 @@
+\chapter{Umsetzung}
+
+\section{Benchmarking}
+
+Da sich die Arbeit auf die Optimierungsfunktion der \ac{CE} beschränkt, kann
+sich auch bei den Messungen auf diese beschränkt werden. Um die Leistung einer
+bestimmten Funktion zu untersuchen, eignet sich, das in
+\autoref{sec:arten_performance_analyse} beschriebenen, Benchmarking. Somit sind
+die Messungen präziser auf diese Funktion ausgerichtet und es wird Aufwand
+gespart, welcher auftreten würde, wenn man die Untersuchungen anhand einer
+HANA-Installation durchführen würde. Genauer wird das in der \ac{CE} verwendete
+Benchmarking-Framework Google Benchmarks genutzt. Dieses bietet die Möglichkeit
+eine Messung mit mehreren Parametern und mehreren Variationen von diesen
+durchzuführen. Es kann \zB für zwei Parameter Größe und Art jeweils eine Menge,
+$G$ und $A$, an Werten festgelegt werden, für welche eine
+Messung ausgeführt werden soll.
+
+\begin{equation*}
+    G=\{2;4;8\}
+    \qquad A=\{j;p\}
+\end{equation*}
+
+
+\begin{equation*}
+    K = G \times A = \{(2,j);(4,j);(8,j);(2,p);(4,p);(8,p)\}
+\end{equation*}
+
+Das kartesische Produkt $K$ ist eine Menge von Tupeln $(g,a)$. Jedes Tupel
+spiegelt eine Kombination von Parametern wider, für welche eine Messung
+durchgeführt wird \autocite[vgl.][50]{Mengenlehre}. Für alle $(g,a) \in K$ wird
+das Modell der Art $a$ und der Größe $g$ optimiert und die Dauer dieser
+Optimierung gemessen. Dieses Modell wird im Folgendem als Modell $(g,a)$
+bezeichnet.
+
+Die Parameter sind folgendermaßen definiert. Für jede Art wird eine Funktion
+definiert, welche ein Modell dieser Art zurückgibt. Die Größe ist ein Wert $n$,
+welcher an diese Funktion übergeben wird. Was genau eine Größe von $n$ bedeutet
+ist dabei von Art zu Art unterschiedlich. Es kann also sein, dass das Modell
+$(4,j)$ mit Größe $4$ und Art $j$ mehr Knoten hat als das Modell $(4,p)$,
+obwohl sie dieselbe Größe haben. Das spielt jedoch keine Rolle, da diese
+Messungen lediglich dazu dienen, zu untersuchen, ob die Laufzeit linear oder
+stärker anwächst. Es ist jedoch wichtig, dass die Anzahl der Knoten, mit der
+Größe linear anwächst, da sonst die Kurven nicht mehr vergleichbar währen.
+Zwei Modelle sind also von gleicher Art, wenn sie mit der gleichen
+Vorgehensweise erzeugt wurden. \autoref{fig:bsp_modell_art} zeigt verschiedene
+Modelle. Von diesen könnten \zB \autoref{bsp_modell_art_1} und
+\autoref{bsp_modell_art_2} von der gleichen Art sein, da diese erzeugt wurden,
+indem ein \foreignlanguage{english}{Aggregation}-Knoten, $n$
+\foreignlanguage{english}{Projection}-Knoten und ein
+\foreignlanguage{english}{Table}-Knoten hintereinander gehängt werden.
+Dabei könnte $n$ die Größe sein und $n+2$ die Anzahl der Knoten.
+
+\begin{figure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \input{Bilder/tikz/modell_projektionen_1.tex} \caption{Beispiel
+        1}\label{bsp_modell_art_1}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \input{Bilder/tikz/modell_projektionen_2.tex} \caption{Beispiel
+        2}\label{bsp_modell_art_2}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth} \input{Bilder/tikz/modell_join.tex}
+        \caption{Beispiel 3}\label{bsp_modell_art_3}
+    \end{subfigure}
+    \caption{Beispiel Modelle}\label{fig:bsp_modell_art}
+\end{figure}
+
+\begin{listing}
+    \input{./Quellcode/tex/benchmarkDefinition.tex}
+\caption{My Listing}
+\label{my_listing}
+\end{listing}
+
+\autoref{my_listing}
+
+\todo{Beschreibung der untersuchten Arten (Codeausschnitte anpassen und evntl einfügen)}
+
+\section{Profiling}

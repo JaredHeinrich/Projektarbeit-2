@@ -26,6 +26,9 @@
 \usepackage{acronym}             % Abkürzungen, Abkürzungsverzeichnis
 \usepackage{titletoc}            % Anpassungen am Inhaltsverzeichnis
 \contentsmargin{0.75cm}          % Abstand im Inhaltsverzeichnis zw. Punkt und Seitenzahl
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[fileext=frm,placement={!ht},name=Code-Ausschnitt]{listing}
+%\captionsetup[listing]{labelfont=bf}
 \usepackage[                     % Klickbare Links (enth. auch "nameref", "url" Package)
   hidelinks,                     % Blende die "URL Boxen" aus.
   breaklinks=true                % Breche zu lange URLs am Zeilenende um
@@ -54,6 +57,7 @@
 % Diese Werte sind aber gute Startwerte.
 \widowpenalty10000
 \clubpenalty10000
+
 
 % ---- Für das Quellenverzeichnis
 \usepackage[
@@ -92,8 +96,9 @@
 % ---- Für Quellcodevorlage
 \usepackage{scrhack}                    % Hack zur Verw. von listings in KOMA-Script
 \usepackage{listings}                   % Darstellung von Quellcode
+\lstset{escapeinside={<@}{@>}}
 \usepackage{xcolor}                     % Einfache Verwendung von Farben
-\input{Inhalt/00_Latex/quellcodeStyle}  % Weitere Details sind ausgelagert
+%\input{Inhalt/00_Latex/quellcodeStyle}  % Weitere Details sind ausgelagert
 
 \usepackage{algorithm}                  % Für Algorithmen-Umgebung (ähnlich wie lstlistings Umgebung)
 \usepackage{algpseudocode}              % Für Pseudocode. Füge "[noend]" hinzu, wenn du kein "endif",
@@ -115,7 +120,7 @@
 % ---- Für Definitionsboxen in der Einleitung
 \usepackage{amsthm}                     % Liefert die Grundlagen für Theoreme
 \usepackage[framemethod=tikz]{mdframed} % Boxen für die Umrandung
-\input{Inhalt/00_Latex/highlightBoxen}  % Weitere Details sind ausgelagert
+\input{Latex/highlightBoxen}  % Weitere Details sind ausgelagert
 
 % ---- Für Todo Notes
 %\usepackage[disable]{todonotes}

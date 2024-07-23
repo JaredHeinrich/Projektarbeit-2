@@ -96,7 +96,7 @@ Ergebnisse der beiden Eingangsknoten zu verbinden.
 \label{sec:grundlagen_graphentheorie}
 
 \autoref{def:gerichteter_graph} gibt eine Definition für einen gerichteten
-Graphen \autocite[vgl.][S.220]{AlgorithmenUndDatenstrukturen}.
+Graphen \autocite[vgl.][220]{AlgorithmenUndDatenstrukturen}.
 \begin{definition}
     Ein gerichteter Graph ist ein Tupel $G=(V,E)$. $V$ heißt Menge der Knoten.
     $E$ heißt Menge der gerichteten Kanten. Es gilt $V\ne\emptyset$ und $E \subset V \times
@@ -106,7 +106,7 @@ Graphen \autocite[vgl.][S.220]{AlgorithmenUndDatenstrukturen}.
 \end{definition}
 
 \autoref{def:pfad} gibt eine Definition für einen Pfad in einem Graphen
-\autocite[vgl.][S.221f]{AlgorithmenUndDatenstrukturen}.
+\autocite[vgl.][221f]{AlgorithmenUndDatenstrukturen}.
 \begin{definition}
     Ein Pfad $P$ in $G$  ist eine Folge von Knoten $v_0, \dots ,v_n$. Dabei
     muss $\forall i \in \{0; \dots; n-1 \} : (v_i,v_{i+1}) \in E$ gelten. $v_0$
@@ -117,7 +117,7 @@ Graphen \autocite[vgl.][S.220]{AlgorithmenUndDatenstrukturen}.
 
 \autoref{def:zyklen} gibt  eine Definition für Zyklen in einem gerichteten
 Graphen und definiert den Begriff des azyklischen Graphen
-\autocite[vgl.][S.222]{AlgorithmenUndDatenstrukturen}.
+\autocite[vgl.][222]{AlgorithmenUndDatenstrukturen}.
 \begin{definition}
     Ein Pfad heißt geschlossen, wenn $v_0 = v_n$. Ein
     geschlossener Pfad heißt einfach, wenn $\forall i,j \in \{0; \dots; n-1\}, i
@@ -128,7 +128,7 @@ Graphen und definiert den Begriff des azyklischen Graphen
 \end{definition}
 
 \autoref{def:gewichteter_graph} definiert den Begriff des gewichteten Graphen
-\autocite[vgl.][S.253]{AlgorithmenUndDatenstrukturen}.
+\autocite[vgl.][253]{AlgorithmenUndDatenstrukturen}.
 \begin{definition}
     $G$ heißt gewichtet, wenn es eine Abbildung $g:E\rightarrow \mathbb{R}$
     gibt, welche jeder Kante ein Gewicht zuordnet. Für $e\in E$ heißt $g(e)$
@@ -137,11 +137,11 @@ Graphen und definiert den Begriff des azyklischen Graphen
 \end{definition}
 
 \autoref{def:quelle_senke} definiert die Begriffe Quelle und Senke
-\autocite[vgl.][S.306]{AlgorithmenUndDatenstrukturen}.
+\autocite[vgl.][306]{AlgorithmenUndDatenstrukturen}.
 \begin{definition}
-    Ein Knoten $q \in V$ heißt Quelle, wenn $ \neg \exists p \in V: (p,q) \in E
+    Ein Knoten $q \in V$ heißt Quelle, wenn $ \forall p \in V: (p,q) \not \in E
     $, $q$ also nach \autoref{def:kind_eltern} keine Elternknoten hat.
-    $s \in V$ heißt Senke, wenn $ \neg \exists p \in V: (s,p) \in E $, $s$ also
+    $s \in V$ heißt Senke, wenn $ \forall p \in V: (s,p) \not \in E $, $s$ also
     nach \autoref{def:kind_eltern} keine Kindknoten hat.
     \label{def:quelle_senke}
 \end{definition}
@@ -156,55 +156,3 @@ Subknoten.
     \label{def:kind_eltern}
 \end{definition}
 % section Notwendige Grundlagen aus der Graphentheorie (end)
-
-\section{Statistische Grundlagen}
-\label{sec:statistische_grundlagen}
-% Metrisches Merkmal
-In \autoref{def:metrisches_merkmal} wird der Begriff metrisches Merkmal
-definiert  \autocite[vgl.][S.24]{Statistik}.
-\begin{definition}
-    Bei einem metrisch skaliertem Merkmale werden einzelne Ausprägungen anhand
-    einer Zahlenskala bewertet, häufig in Verbindung mit einer Maßeinheit. Sie
-    lassen sich anhand der Größe ordnen und vergleichen. Außerdem kann man die
-    Abstände zwischen verschiedenen Ausprägungen messen und interpretieren.
-    \label{def:metrisches_merkmal}
-\end{definition}
-
-% Arithmetisches Mittel
-\autoref{def:durchschnitt} definiert die, im Kontext dieser Arbeit gleichbedeutenden, Begriffe
-Durchschnitt, Mittelwert und Arithmetisches Mittel \autocite[vgl.][S.52f]{Statistik}.
-\begin{definition}
-    Das arithmetische Mittel von $n$ metrisch skalierten Beobachtungswerten
-    $x_1,\dots,x_n$, genannt $\bar{x}$. 
-
-    Es gilt: $\bar{x} = \frac{1}{n} \displaystyle\sum^{n}_{i=1}x_i$
-
-    \label{def:durchschnitt}
-\end{definition}
-
-% Varianz
-\autoref{def:varianz} beschreibt den Begriff der Varianz
-\autocite[vgl.][S.399]{CorrelationBetweenRelatives}.
-\begin{definition}
-    Die empirische Varianz von $n$ metrisch skalierten Beobachtungswerten $x_1,
-    \dots, x_n$, genannt $\tilde{s}^2$, ist der Durchschnitt der quadratischen
-    Abweichung von $x_i$ von $\bar{x}$.
-
-    Es gilt: $\tilde{s}^2 = \frac{1}{n} \displaystyle\sum^{n}_{i=1}(x_i - \bar{x})^2 $
-    \label{def:varianz}
-\end{definition}
-
-% Standartabweichung
-\autoref{def:standardabweichung} beschreibt den Begriff der Standardabweichung
-\autocite[vgl.][S.80]{ContributionsToTheMathematicalTheory}.
-\begin{definition}
-    Die empirische Standardabweichung von $n$ metrisch skalierten Beobachtungswerten $x_1,
-    \dots, x_n$, genannt $\tilde{s}$, ist die Quadratwurzel der Varianz.
-
-    Es gilt: $\tilde{s} = \sqrt{\tilde{s}^2} = \sqrt{\frac{1}{n}
-    \displaystyle\sum^{n}_{i=1}(x_i - \bar{x})^2} $
-    \label{def:standardabweichung}
-\end{definition}
-
-% ?Regression?
-% section Statistische Grundlagen (end)

@@ -1,4 +1,4 @@
-\input{Inhalt/00_Latex/praeambel}
+\input{Latex/praeambel}
 
 % ---- Elektronische Version oder Gedruckte Version?
 % ---- Unterschied: Die elektronische Version enthält keinen Platzhalter für die Unterschrift
@@ -26,7 +26,7 @@
 \newcommand{\betreuerFirma}{Rainer Agelek}
 \newcommand{\betreuerDhbw}{Prof. Dr. Hans-Henning Pagnia}
 
-\input{Inhalt/00_Latex/kopfundFusszeile}
+\input{Latex/kopfundFusszeile}
 
 % ---- Hilfreiches
 \newcommand{\zB}{z.\,B. }   % "z.B." mit kleinem Leeraum dazwischen (ohne wäre nicht korrekt)
@@ -50,15 +50,15 @@
 % ---- Vorspann
 % ------ Titelseite
 \singlespacing
-\include{Inhalt/01_Standard/titelseite}  % Titelseite
+\include{Standard/titelseite}  % Titelseite
 \newcounter{savepage}
 \pagenumbering{Roman}                    % Römische Seitenzahlen
 \onehalfspacing
 
 % ------ Erklärung, Sperrvermerk, Abstact
-\include{Inhalt/01_Standard/erklaerung}
-\include{Inhalt/01_Standard/sperrvermerk}
-\include{Inhalt/02_Abstract/abstract-de}
+\include{Standard/erklaerung}
+\include{Standard/sperrvermerk}
+\include{Abstract/abstract-de}
 
 % ------ Inhaltsverzeichnis
 \singlespacing
@@ -67,12 +67,12 @@
 % ------ Verzeichnisse
 \renewcommand*{\chapterpagestyle}{plain}
 \pagestyle{plain}
-\include{Inhalt/03_Verzeichnisse/formelgroessen}
-\include{Inhalt/03_Verzeichnisse/abkuerzungen}
+\include{Verzeichnisse/formelgroessen}
+\include{Verzeichnisse/abkuerzungen}
 \listoffigures                          % Erzeugen des Abbildungsverzeichnisses 
 \listoftables                           % Erzeugen des Tabellenverzeichnisses
-\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
-\lstlistoflistings                      % Erzeugen des Listenverzeichnisses
+\renewcommand{\listlistingname}{Quellcodeverzeichnis}
+\listoflistings
 \setcounter{savepage}{\value{page}}
 
 
@@ -84,13 +84,13 @@
 \renewcommand*{\chapterpagestyle}{scrheadings}
 \pagestyle{scrheadings}
 \onehalfspacing
-\include{Inhalt/04_Inhalt/einleitung}
-\include{Inhalt/04_Inhalt/grundlagen}
-\include{Inhalt/04_Inhalt/analyse}
-\include{Inhalt/04_Inhalt/konzept}
-\include{Inhalt/04_Inhalt/umsetzung}
-\include{Inhalt/04_Inhalt/verifikation}
-\include{Inhalt/04_Inhalt/fazit}
+\include{Inhalt/einleitung}
+\include{Inhalt/grundlagen}
+\include{Inhalt/analyse}
+\include{Inhalt/konzept}
+\include{Inhalt/umsetzung}
+\include{Inhalt/verifikation}
+\include{Inhalt/fazit}
 
 % ---- Anhang
 \appendix

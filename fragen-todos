@@ -1,0 +1,86 @@
+fragen
+
+Sind Interne Quellen erlaubt?                              | öffentliche sap doku
+Umbenennung der Gliederungspunkte?                         | ja
+Zitierstil? Zwingend Fußnoten? Geht auch IEEE?             | ehr nicht IEEE stattdessen name jahr oder so
+Nutzen von englischen Begriffen in einer deutschen Arbeit? | wenn im duden
+Meinung zu Definitionen?                                   | x
+Zitierstil so in Ordnung?                                  | ja
+Meinung zu Absätzten, bsp Google Benchmark?                | zu viele Absätze aber generell ok
+Was mache ich mit sehr großen Grafiken?                    | 
+Inwiefern sollen Messdaten in die Arbeit?                  | 
+Referenz auf Doku subseite?                                | 
+
+--------------------------------------------------
+
+anmerkung
+
+[x] Wirtschaftsinformatik
+[x] titel bei namen 
+[x] wissenschaftlicher betreuer
+[x] Ehrenwörtliche erklärung statt eidestattliche erklärung
+[x] Ehrenwörtliche erklärung ersetzen (aus Prüfungsordnung)
+[x] Mannheim statt Karlsruhe
+[x] kein englisher abstract
+[x] Anhang vor Literaturverzeichniss
+[x] Literaturverzeichniss ganz am ende
+[x] abstract fehlt
+[x] Neuer Termin 
+[x] genauer auf Abbildung eingehen
+[x] Im Literaturverzeichniss normale seitenzahlen
+[x] In der definition keine literaturreferenz
+[x] Grundlangen notwendige Definitionen aus der Graphentheorie.
+[x] ISBN Nummer in Literaturverzeichniss
+[x] Aktuelles Statistik buch statt alte Quellen
+[x] Varianz Standart Abweichung keine Definition
+[x] Definition 5 andere Darstellung
+[x] Konzept nicht gleich umsetzung
+[x] Koinzidenzintervall 95%
+[x] bessere name als Umsetzung für Kapitel => Implementierung
+[x] Verifikation => Durchführung und Auswertung der Messungen
+[x] kein Trailing dot bei Chapter und section
+[x] statt Abbildung 3.2a => Abbildung 3.2 (a)
+[x] Abstand zwischen Literaturverzeichniss Einträgen paar mm
+[x] kein konjunktiv
+[x] Kein pfad in der Zitation
+[x] 6.1 Abbildung keine Achsen
+[x] Ausagekräftige Titel für Abbildungen
+[x] bei Abbildung 3.2 hellere rot töne
+[x] Begriff E-Wert nicht nutzen, aber bedeutung genauer erklären.
+[x] Ausführlichere Erklärung für Time und CPU-Time in 3.1
+[x] Gliederung Calc Engine in Aktueller stand
+[ ] Erklärung Benchmarking
+[ ] Erklärung Profiling
+[ ] Erklärung warum Warte-Graph nicht beachtet wird / nicht benötigt wird.
+[ ] Anwendung der Messungen Lineare Regression, wie sind die Abhängigkeiten.
+[ ] Ausblick wie können die Ergebnisss verbessert / genutzt werden.
+[ ] Alle Messwerte in den Anhang + Standartabweichungen und Konfidenzintervall
+[ ] Ziel der Arbeit benennen (Einleitung/Abstract)
+[ ] Referenz auf R / Python in Einleitung cite mit package version (in bib file)
+[ ] Quellen Performance Messung / Datenbanken
+[ ] Quellen 2 Seiten Literatur
+[ ] nennen, dass die Messergebnisse über einen Größeren Zeitraum nicht zwingend
+reproduzierbar sind, aufgrund dessen, dass sie auf einer virtuellen Maschiene
+ausgeführt werden. Ist jedoch nicht relevant, da die exacten werte nicht für
+die Arbeit Relevant sind. Möchte man jedoch überprüfen, ob eine Änderung eine
+Verbesserung der Ergebnisse verursacht hat ist es Sinnvoll eine Dedizierte
+Maschiene zu nutzen. (Beleg mit Quelle?)
+[ ] z.B. Test-Frameworks statt Test Frameworks Setup-Abschnitt
+[ ] kein Trailing dot bei Definition
+[ ] abstract in pa und extra als abgabe
+
+[?] Definition für verschiedene Kennwerte z.b. stabiler durchschnittswert ...
+[?] setup teardown genauer was passiert dort 
+
+
+Informationen für Korrekturlesen
+
+Kein Konjunktiv
+Meistens Präsens im Zweifelsfall rausschreiben
+Bei Englischen Wörtern verbindung mit Bindestrich z.B. Join-Knoten
+Rechtschreibung
+Zeichensetzung
+Absätze
+Worte unklar und werden nicht erklärt
+Worte besonders kennzeichnen z.B. kursiv / Fett ...
+Unterschriften / Titel für Bilder und Grafiken

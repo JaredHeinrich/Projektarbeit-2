@@ -1,0 +1,9 @@
+digraph Profiler {
+ratio=compress
+optimize [shape=record,label="{TrexCalculationEngine\n::Optimizer2\n::optimize|I=100%\nE=18%\n(Sys: I=3.1%, E=0.5%)\n}",style=filled,fillcolor="#fa7070",fontname=sans];
+OptimizerStruct [shape=record,label="{TrexCalculationEngine\n::OptimizerStruct\<|I=23%\nE=2.1%\n(Sys: I=1%, E=0%)\n}",style=filled,fillcolor="#ffd2d2",fontname=sans];
+CombineJoinOverProjectionPattern [shape=record,label="{TrexCalculationEngine\n::CombineJoinOverProjectionPattern\n::doesMatch|I=21%\nE=19%\n(Sys: I=1%, E=1%)\n}",style=filled,fillcolor="#ffd5d5",fontname=sans];
+
+optimize -> OptimizerStruct [label="23%", weight=1]
+OptimizerStruct -> CombineJoinOverProjectionPattern [label="90%", weight=1]
+}

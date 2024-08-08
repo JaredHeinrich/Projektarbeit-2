@@ -1,93 +1,11 @@
 \chapter{Grundlagen}
 
-\section{\acl{CE}}
-%HANA?
+\section{Performance Analyse}
+\label{sec:performance_analyse}
 
-\section{Modelle und Datenbankabfragen}
-\label{sec:modells_db_queries}
-Um Daten einer HANA Datenbank zu analysieren, können sogenannte
-Kalkulationssichten genutzt werden. Da nur diese Kalkulationssichten in der
-Arbeit weiter betrachtet werden, werden sie im Folgenden auch als
-Datenbankabfragen bezeichnet. \autocite[Vgl.][]{SapHanaCreateCalcViews}
-
-In der \ac{CE} werden diese Datenbankabfragen durch Modelle dargestellt. Für
-jede Abfrage wird zuerst das dazugehörige Modell instanziiert. Anschließend
-wird dieses Modell optimiert, um die Ausführungsdauer der Abfrage zu
-minimieren.  Diese optimierte Abfrage, wird dann auf der Datenbank ausgeführt.
-Allgemein kann man ein Modell als azyklischen gerichteten Graphen nach
-\autoref{def:gerichteter_graph} und \autoref{def:zyklen} beschreiben. Des
-Weiteren ist zu beachten, dass dieser Graph nur eine Quelle nach
-\autoref{def:quelle_senke} hat, welche auch als Abfrageknoten bezeichnet wird.
-Diese Definitionen reichen jedoch nicht aus, da zwischen verschiedenen Arten
-von Knoten unterschieden wird, welche jeweils verschiedene Informationen
-beinhalten.  Allgemein werden die Knoten in der \ac{CE} in zwei Gruppen
-unterschieden, Datenquellen und Sichtknoten. Es gibt verschiedene Datenquellen,
-zur Vereinfachung werden in dieser jedoch Arbeit nur
-\foreignlanguage{english}{Table}-Knoten betrachtet. Deshalb werden Datenquellen
-im Folgenden auch Tabellenknoten genannt.
-%Ein \foreignlanguage{english}{Table}-Knoten spiegelt eine Tabelle einer Datenbank wider.
-Die andere Gruppe sind die Sichtknoten. Zu diesen gehören \zB
-\foreignlanguage{english}{Projection}, \foreignlanguage{english}{Aggregation},
-\foreignlanguage{english}{Join} und \foreignlanguage{english}{Union}. Auch hier
-gibt es zwar noch Weitere, diese Arbeit beschränkt sich jedoch auf diese.
-Diese Modelle könnte man zwar wie in \autoref{def:gerichteter_graph}
-beschreiben als eine Menge von Knoten und Kanten darstellen, gespeichert wird
-jedoch eine Liste an Knoten, von welchen jedem seine Kind- und Elternknoten
-zugeordnet sind. Die Kindknoten werden dabei als Eingangsknoten und die
-Elternknoten als Ausgangsknoten bezeichnet. Jeder Knoten kann beliebig viele
-Ausgangsknoten haben, wobei es wie bereits beschreiben nur einen Knoten mit $0$
-Ausgangsknoten gibt. Die Anzahl der Eingangsknoten unterscheidet sich dabei je
-nach Knotentyp.
-\foreignlanguage{english}{Projection}- und
-\foreignlanguage{english}{Aggregation}-Knoten haben genau einen, \todo{Was genau ist Aggregation}
-\foreignlanguage{english}{Join}- \todo{Join nur 2}und \foreignlanguage{english}{Union}-Knoten
-haben zwei oder mehr und ein \foreignlanguage{english}{Table}-Knoten hat keinen
-Eingangsknoten. Bei den Eingangsknoten kann es sich um Tabellenknoten
-sowie auch Sichtknoten handeln. \autocite[Vgl.][/Create Calculation
-Views/Supported View Nodes for Modeling Calculation
-Views]{SapHanaCreateCalcViews}
-
-\autoref{fig:bsp_modell} zeigt ein einfaches Beispielmodell, welches zur
-Veranschaulichung dient. Das Modell besteht aus fünf Knoten, dem Abfrageknoten,
-zwei Sichtknoten und zwei Tabellenknoten. In dem Knoten steht der Name des
-Knotens und neben ihm steht der Knotentyp. Bis auf den Abfrageknoten haben in
-diesem Beispiel alle Knoten eine Zahl als Namen. Der Abfrageknoten sowie alle
-Tabellenknoten sind zusätzlich farblich markiert. Knoten 1 ist ein
-\foreignlanguage{english}{Join}-Knoten. Er hat zwei Eingangsknoten,
-den \foreignlanguage{english}{Table}-Knoten 2 und den
-\foreignlanguage{english}{Projection}-Knoten 3. Der einzige Ausgangsknoten ist in diesem Fall der
-Abfrageknoten, dieser ist hier vom Typ \foreignlanguage{english}{Aggregation}.
-Der Abfrageknoten könnte jedoch alternativ auch vom Typ \foreignlanguage{english}{Projection} sein. \todo{Unsicher??}
-
-\begin{figure}
-    \begin{center}
-        \input{Bilder/tikz/bsp_modell}
-    \end{center}
-    \caption{Beispiel Modell}\label{fig:bsp_modell}
-\end{figure}
-
-Zusätzlich zu den Eingangs- und Ausgangsknoten werden in jedem Knoten
-noch weitere Informationen gespeichert. Jeder Knoten beinhaltet
-eine Liste an Sichtattributen, diese legt fest, welche Sichtattribute dieser
-Knoten an seine Ausgangsknoten weitergibt. Bei einem Tabellenknoten sind die
-Sichtattribute gleichbedeutend mit den Spalten der Tabelle. Die Sichtattribute
-des Abfrageknotens sind die Attribute, welche im Ergebnis der Abfrage enthalten
-sind. Damit Sichtattribute umbenannt werden können, wird jedem Eingangsknoten
-eine Liste an Mappings zugeordnet. Hat der Knoten $N$ einen Eingangsknoten $E$
-mit einem Mapping, dann bildet dieses ein Sichtattribut von $E$ auf ein
-Sichtattribut von $N$ ab.
-
-Die verschiedenen Sichtknotentypen sind für verschiedene Operationen zuständig.
-Manche dieser Knoten haben noch zusätzliche Attribute, um die genaue Art und
-Weise der Operation festzulegen.
-Ein \foreignlanguage{english}{Join}-Knoten kann genutzt werden, um die
-Ergebnisse der beiden Eingangsknoten zu verbinden. 
-
-% section Modelle und Datenbankabfragen (end)
-
-\section{Verschiedene Arten von Performance Analyse}
-\label{sec:arten_performance_analyse}
 \subsubsection*{Benchmarking}
+
+
 \subsubsection*{Profiling}
 
 % section Verschiedene Arten von Performance Analyse (end)

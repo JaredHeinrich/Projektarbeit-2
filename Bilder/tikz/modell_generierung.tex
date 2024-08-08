@@ -1,0 +1,38 @@
+\begin{tikzpicture}[
+    node distance = 1cm,
+    request/.style = {rectangle, draw, blue, minimum width=2cm, minimum height=0.8cm},
+    submodel/.style = {rounded rectangle, draw, minimum size=1cm},
+    small_op_node/.style = {circle, draw, minimum size=0.3cm},
+    small_table_node/.style = {circle, draw, magenta, minimum size=0.3cm},
+    table_node/.style = {circle, draw, magenta, minimum size=1cm},
+    arrow/.style = {->, >=stealth}
+]
+
+% Nodes
+\node[request] (A) at (0,4) {Abfrage};
+\node[right=0.2cm of A] {Aggregation};
+
+\node[small_op_node] (X) at (0,2) {};
+\node[small_op_node] (Y) at (1,1) {};
+\node[small_table_node] (Z) at (-1,1) {};
+\node[draw, rounded rectangle, inner sep=5mm, fit=(X) (Y) (Z)] (0) {};
+\node[right=0.2cm of 0] {Submodell};
+
+\node[submodel] (1) at (0,-1) {...};
+\node[right=0.2cm of 1] {Submodell};
+
+\node[table_node] (T) at (0,-3) {T};
+\node[right=0.2cm of T] {Table};
+
+% Arrows
+\draw[arrow] (A) -- (0);
+\draw[arrow] (0) -- (1);
+\draw[arrow] (1) -- (T);
+
+\draw[arrow] (X) to[out=-30,in=90] (Y);
+\draw[arrow] (X) to[out=210,in=90] (Z);
+
+\draw[arrow] (0.north) -- (X.north);
+\draw[arrow] (Y.west) to[out=210, in=90] (0.south);
+
+\end{tikzpicture}

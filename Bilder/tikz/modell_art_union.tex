@@ -1,0 +1,23 @@
+\begin{tikzpicture}[
+    node distance = 1cm,
+    op_node/.style = {circle, draw, minimum size=1cm},
+    table_node/.style = {circle, draw, magenta, minimum size=1cm},
+    arrow/.style = {->, >=stealth}
+]
+
+\node[op_node] (0) at (0,0) {0};
+\node[right=0.2cm of 0] {Union};
+
+\node[table_node] (1) at (-1.5,-2) {1};
+
+\node[table_node] (2) at (0,-2) {2};
+
+\node[op_node] (3) at (1.5,-2) {3};
+\node[right=0.2cm of 3] {Proj};
+
+\draw[arrow] (0,1) -- (0);
+\draw[arrow] (0) to[out=210,in=90] (1);
+\draw[arrow] (0) -- (2);
+\draw[arrow] (0) to[out=-30,in=90] (3);
+\draw[arrow] (3) -- (1.5,-3);
+\end{tikzpicture}

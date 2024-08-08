@@ -1,23 +1,28 @@
-\chapter{Umsetzung}
+\chapter{Implementation der Untersuchungsmethode}
 
 \section{Benchmarking}
 
 Da sich die Arbeit auf die Optimierungsfunktion der \ac{CE} beschränkt, kann
 sich auch bei den Messungen auf diese beschränkt werden. Um die Leistung einer
 bestimmten Funktion zu untersuchen, eignet sich, das in
-\autoref{sec:arten_performance_analyse} beschriebenen, Benchmarking. Somit sind
+\autoref{sec:performance_analyse} beschriebenen, Benchmarking. Somit sind
 die Messungen präziser auf diese Funktion ausgerichtet und es wird Aufwand
 gespart, welcher auftreten würde, wenn man die Untersuchungen anhand einer
 HANA-Installation durchführen würde. Genauer wird das in der \ac{CE} verwendete
-Benchmarking-Framework Google Benchmarks genutzt. Dieses bietet die Möglichkeit
+Benchmarking-Framework Google Benchmark genutzt. Dieses bietet die Möglichkeit
 eine Messung mit mehreren Parametern und mehreren Variationen von diesen
-durchzuführen. Es kann \zB für zwei Parameter Größe und Art jeweils eine Menge,
-$G$ und $A$, an Werten festgelegt werden, für welche eine
-Messung ausgeführt werden soll.
+durchzuführen. Die festgelegten unabhängigen Variablen, Größe und Art, werden
+durch solche Parameter widergespiegelt. Wie in \autoref{sec:google_benchmark}
+beschrieben, gibt Google Benchmark die Werte \textit{CPU} und \textit{Time} für
+die Laufzeit des Hauptabschnitts zurück. Für die abhängige Variable Zeit wird
+\textit{Time} als Wert gewählt, da dieser auch potenzielle Wartezeiten
+innerhalb der Optimierungsfunktion beinhaltet. Für die beiden Parameter kann
+jeweils eine Menge, \zB $G$ für Größe und $A$ für Art, an Werten festgelegt
+werden, für welche Messungen durchgeführt werden sollen.
 
 \begin{equation*}
-    G=\{2;4;8\}
-    \qquad A=\{j;p\}
+    G=\{2;4;8\}\qquad
+    A=\{j;p\}
 \end{equation*}
 
 
@@ -38,41 +43,167 @@ welcher an diese Funktion übergeben wird. Was genau eine Größe von $n$ bedeut
 ist dabei von Art zu Art unterschiedlich. Es kann also sein, dass das Modell
 $(4,j)$ mit Größe $4$ und Art $j$ mehr Knoten hat als das Modell $(4,p)$,
 obwohl sie dieselbe Größe haben. Das spielt jedoch keine Rolle, da diese
-Messungen lediglich dazu dienen, zu untersuchen, ob die Laufzeit linear oder
-stärker anwächst. Es ist jedoch wichtig, dass die Anzahl der Knoten, mit der
-Größe linear anwächst, da sonst die Kurven nicht mehr vergleichbar währen.
+Messungen lediglich dazu dienen, zu untersuchen, wie sich die Laufzeit bei
+wachsender Größe verhält.
 Zwei Modelle sind also von gleicher Art, wenn sie mit der gleichen
 Vorgehensweise erzeugt wurden. \autoref{fig:bsp_modell_art} zeigt verschiedene
-Modelle. Von diesen könnten \zB \autoref{bsp_modell_art_1} und
-\autoref{bsp_modell_art_2} von der gleichen Art sein, da diese erzeugt wurden,
+Modelle. Von diesen können \zB \autoref{bsp_modell_art_1} und
+\autoref{bsp_modell_art_2} von der gleichen Art sein, da diese beiden erzeugt wurden,
 indem ein \foreignlanguage{english}{Aggregation}-Knoten, $n$
 \foreignlanguage{english}{Projection}-Knoten und ein
 \foreignlanguage{english}{Table}-Knoten hintereinander gehängt werden.
-Dabei könnte $n$ die Größe sein und $n+2$ die Anzahl der Knoten.
+Dabei kann \zB $n$ die Größe sein und $n+2$ die Anzahl der Knoten.
+\autoref{bsp_modell_art_3} wurde nicht auf dieser Weise erzeugt, daher ist es
+nicht von der gleichen Art. 
 
 \begin{figure}
+    \center
     \begin{subfigure}[b]{0.3\textwidth}
-        \input{Bilder/tikz/modell_projektionen_1.tex} \caption{Beispiel
-        1}\label{bsp_modell_art_1}
+        \input{Bilder/tikz/modell_projektionen_1.tex}
+        \caption{Beispiel 1}\label{bsp_modell_art_1}
     \end{subfigure}
     \begin{subfigure}[b]{0.3\textwidth}
-        \input{Bilder/tikz/modell_projektionen_2.tex} \caption{Beispiel
-        2}\label{bsp_modell_art_2}
+        \input{Bilder/tikz/modell_projektionen_2.tex}
+        \caption{Beispiel 2}\label{bsp_modell_art_2}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth} \input{Bilder/tikz/modell_join.tex}
+    \begin{subfigure}[b]{0.3\textwidth} 
+        \input{Bilder/tikz/modell_join.tex}
         \caption{Beispiel 3}\label{bsp_modell_art_3}
     \end{subfigure}
-    \caption{Beispiel Modelle}\label{fig:bsp_modell_art}
+    \caption{Modelle gleicher und unterschiedlicher Art}\label{fig:bsp_modell_art}
 \end{figure}
 
 \begin{listing}
-    \input{./Quellcode/tex/benchmarkDefinition.tex}
-\caption{My Listing}
-\label{my_listing}
+    \lstinputlisting[]{./Quellcode/tex/benchmarkDefinition.tex}
+\caption{Benchmark Definition}
+\label{code:benchmark_definition}
 \end{listing}
 
-\autoref{my_listing}
+\autoref{code:benchmark_definition} zeigt die Definition des Benchmarks,
+welcher genutzt wird, um die Messungen durchzuführen. \verb+BM_Optimizer+,
+abgebildet in \autoref{code:benchmark_optimizer} ist die Funktion, welche den
+Code des Benchmarks enthält. \verb+BenchOptimizerArguments+, abgebildet in
+\autoref{code:benchmark_arguments} legt alle Parameterpaare fest, für welche
+die Funktion des Benchmarks aufgerufen werden soll. \verb+Repetitions(20)+ legt
+die Anzahl der Wiederholungen fest und sorgt dafür, dass die Funktion für jedes
+dieser Paare 20-mal ausgeführt wird. \verb+Unit(benchmark::kMicrosecond)+ legt
+fest, dass die Einheit der Ausgabe Mikrosekunden ist.
 
-\todo{Beschreibung der untersuchten Arten (Codeausschnitte anpassen und evntl einfügen)}
+\begin{listing}
+    \lstinputlisting[]{./Quellcode/tex/benchOptimizerArguments.tex}
+\caption{Benchmark Parameter}
+\label{code:benchmark_arguments}
+\end{listing}
+
+\autoref{code:benchmark_arguments} erzeugt das kartesische Produkt von einer
+Menge von Arten und einer Menge von Größen, und fügt jedes Tupel den Parameter
+Paaren des Benchmarks hinzu.
+
+\begin{listing}
+    \lstinputlisting[]{./Quellcode/tex/benchOptimizer.tex}
+\caption{Benchmark Hauptlogik}
+\label{code:benchmark_optimizer}
+\end{listing}
+
+\autoref{code:benchmark_optimizer} beinhaltet die tatsächliche Logik des
+Benchmarks. Diese Funktion wird für jedes Parameterpaar $n$-mal aufgerufen,
+wobei $n$ die Anzahl der Wiederholungen ist. Für die Zeitmessung wird dabei nur
+der Teil innerhalb der Iterationsschleife (\verb+for (auto _ : state) {}+) beachtet. Diese
+wird $i$-mal ausgeführt, wobei $i$ die Anzahl der Iterationen ist. $i$ wird
+abhängig von der Dauer einer Iteration und der Varianz der Zeit über alle
+Iterationen hinweg automatisch bestimmt. Da die \verb+optimize+ Funktion die
+\verb+RuntimeModel+ Instanz bearbeitet ist es problematisch, wenn die Funktion
+mehrmals mit derselben Instanz aufgerufen wird. Deshalb wird die
+Modell-Instanz innerhalb der Iterationsschleife erzeugt. Um die hierfür
+benötigte Zeit nicht zu messen, wird die Zeitmessung davor pausiert, und danach wieder
+fortgesetzt.
 
 \section{Profiling}
+
+\begin{listing}
+    \lstinputlisting[]{./Quellcode/tex/profilingDefinition.tex}
+\caption{Profiling Definition}
+\label{code:profiling_definition}
+\end{listing}
+
+Das Profiling wird ebenfalls in einem Benchmark durchgeführt, um auch hier die
+Messung nur auf die \verb+optimize+ Funktion zu beschränken. Die Definition
+von diesem ist in \autoref{code:profiling_definition} gegeben. Der Benchmark
+wird einmal für das zu untersuchende Parameterpaar ausgeführt. In
+\autoref{code:profiling_definition} wurde exemplarisch für die Größe \verb+2048+ und
+für die Art \verb+modelCreationJoinWithFilter+ gewählt.
+
+\begin{listing}
+    \lstinputlisting[]{./Quellcode/tex/profilingOptimizer.tex}
+\caption{Profiling Hauptlogik}
+\label{code:profiling_optimizer}
+\end{listing}
+
+\autoref{code:profiling_optimizer} zeigt die Logik für das Profiling, diese
+sehr ähnlich zur Benchmarking-Logik, deshalb werden nur die Unterschiede
+dargelegt. Da der Benchmark für das Profiling nicht genutzt wird, um die
+Laufzeit die Iterationsschleife zu untersuchen, wird hier auf das Pausieren der
+Zeitmessung verzichtet. Stattdessen, wird das Profiling während der
+Initialisierung des Modells pausiert. Nachdem alle Iterationen durchlaufen
+wurden, werden die gesammelten Profiling-Informationen ausgegeben.
+
+\section{Untersuchte Parameter}
+Die Parameter, welche für die Messungen verwendete werden sind
+bereits in \autoref{code:benchmark_arguments} dargestellt. In diesem Abschnitt
+werden jedoch die verschiedenen Modellarten noch genauer erläutert.
+Die Modelle für die Messungen wurde wie in \autoref{fig:modell_generierung}
+dargestellt erzeugt. Betrachtet man nur das Submodell, so hat jedes genau eine
+Quelle und mindestens eine Senke. Die Quelle ist der Startknoten des
+Submodells. Eine der Senken ist der Endknoten des Submodells, alle übrigen
+Senke müssen Tabellenknoten sein. Um mehrere Submodelle aneinander zu hängen,
+wird der Startknoten des einen Submodells an den Endknoten des anderen
+gehängt. Die Anzahl der Submodelle wird dabei durch den Parameter Größe
+bestimmt. Der Aufbau eines Submodells wird von der Art des Modells bestimmt.
+
+
+\begin{figure}[h]
+    \begin{center}
+        \input{Bilder/tikz/modell_generierung.tex}
+    \end{center}
+    \caption{Darstellung der Modellgenerierung}\label{fig:modell_generierung}
+\end{figure}
+
+\autoref{fig:modell_arten} zeigt den Aufbau der Submodelle, für die drei
+bereits in \autoref{code:benchmark_arguments} gezeigten Modellarten.
+Das erste Submodell, besteht aus einem
+einzelnen \foreignlanguage{english}{Projection}-Knoten. Dieser Knoten ist
+Start- und Endknoten des Submodells. Das zweite Submodell besteht aus
+einem \foreignlanguage{english}{Join}-Knoten, einem
+\foreignlanguage{english}{Table}-Knoten und einem
+\foreignlanguage{english}{Projection}-Knoten. Der
+\foreignlanguage{english}{Join}-Knoten ist der Startknoten des Submodells und
+hat den \foreignlanguage{english}{Table}- und den
+\foreignlanguage{english}{Projection}-Knoten als Eingangsknoten.
+Der \foreignlanguage{english}{Projection}-Knoten ist der Endknoten des
+Submodells. Das dritte Submodell besteht aus einem
+\foreignlanguage{english}{Union}-Knoten, zwei
+\foreignlanguage{english}{Table}-Knoten und einem
+\foreignlanguage{english}{Projection}-Knoten. Der
+\foreignlanguage{english}{Union}-Knoten ist der Startknoten des Submodells und
+hat die drei übrigen Knoten als Eingangsknoten. Der
+\foreignlanguage{english}{Projection}-Knoten ist der Endknoten des Submodells.
+
+\begin{figure}
+    \center
+    \begin{subfigure}[b]{0.2\textwidth}
+        \center
+        \input{Bilder/tikz/modell_art_projection.tex} 
+        \caption{\foreignlanguage{english}{PROJECTION}}\label{modell_art_projection}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \center
+        \input{Bilder/tikz/modell_art_join.tex} 
+        \caption{\foreignlanguage{english}{JOIN}}\label{modell_art_join}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\textwidth} 
+        \center
+        \input{Bilder/tikz/modell_art_union.tex}
+        \caption{\foreignlanguage{english}{UNION}}\label{modell_art_union}
+    \end{subfigure}
+    \caption{Darstellung der verschiedenen Modellarten}\label{fig:modell_arten}
+\end{figure}

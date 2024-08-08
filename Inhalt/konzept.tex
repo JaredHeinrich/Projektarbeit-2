@@ -19,12 +19,12 @@ Deshalb werden mehrere Messreihen durchgeführt, wobei innerhalb einer Messreihe
 der Art konstant ist, die Größe jedoch variabel ist. Für jede Art wird eine
 neue Messreihe begonnen. Störvariablen, also Einflussfaktoren, welche ebenfalls
 die abhängigen Variablen beeinflussen, jedoch während der Messung
-unkontrolliert auftreten, ist \zB die Prozessorauslastung des Rechners, auch
+unkontrolliert auftreten, \zB die Prozessorauslastung des Rechners, auf
 welchem die Messung durchgeführt wird \autocite[vgl.][237]{EmpirischeMethoden}.
 Ist der Prozessor weniger ausgelastet, dann ist die gemessene Zeit vermutlich
 geringer, als wenn der Prozessor stark ausgelastet ist.
 
-Um den Einfluss der Störvariablen möglichst gering zu halten, wird jede Messung
+Um den Einfluss dieser Störvariablen möglichst gering zu halten, wird jede Messung
 $n$ mal wiederholt. Aus diesen Messwerten wird nun ein Konfidenzintervall
 gebildet, welches mit der Wahrscheinlichkeit $1 - \alpha$ den tatsächlichen
 Erwartungswert $\mu$ enthält. Dazu werden die Messwerte als eine T-verteilte
@@ -43,7 +43,7 @@ gilt: $\hat{\sigma}^2 = S^2$ \autocite[vgl][528]{Statistik}. Für das
 Dabei ist $\bar{X}$ der Mittelwert der Stichprobe und $S^2$ die korrigierte
 Stichprobenvarianz \autocites[vgl.][59, 502]{Statistik}. 
 \begin{equation*}
-    \bar{x} = \frac{1}{n} \displaystyle\sum^{n}_{i=1}x_i 
+    \bar{X} = \frac{1}{n} \displaystyle\sum^{n}_{i=1}x_i 
 \end{equation*}
 \begin{equation*}
     S^2 = \frac{1}{n-1}\displaystyle\sum^{n}_{i=1}(x_i-\bar{X})^2
@@ -54,21 +54,26 @@ betrachtet, um aus diesen, allgemeine Regeln festzulegen, mit welchen man
 Modelle variabler Größe aber derselben Art erzeugen kann. Die Modelle werden
 für die Messung künstlich erzeugt, um die unabhängigen Variablen gezielt
 verändern zu können. Auf die reellen Abfragen wird dabei zurückgegriffen, um
-die Relevanz der Messung, für reelle Szenarien zu gewährleisten.
+die Relevanz der Messung, für reelle Szenarien zu erhöhen.
 \autocite[Vgl.][500f]{ExperimentalAnalysis}
 
 Diese Messdaten werden genutzt, um festzustellen, wie sich die Laufzeit der
 Optimierung für Modelle bestimmter Art bei steigender Größe verhalten. Dabei
 ist besonders interessant, ob sich die Laufzeit zur Größe linear verhält,
-beziehungsweise ob es stärker oder schwächer ansteigt. Für die Optimierung des
+beziehungsweise ob sie stärker oder schwächer ansteigt. Für die Optimierung des
 Algorithmus sind nun die Modellarten interessant, bei welchen die Laufzeit
 stärker als linear ansteigt, da diese Modellarten ein besonders hohes Potenzial
 haben lange Laufzeiten zu verursachen. Um genauer herauszufinden, in welchem
 Teil des Optimierungsalgorithmus besonders viel Zeit benötigt wurde, werden
-diese Modelle nochmals mithilfe des in \autoref{sec:arten_performance_analyse}
-beschriebenen Profilings untersucht. Dazu werden mehrere Modelle dieser Art
+diese Modelle nochmals mithilfe des in \autoref{sec:performance_analyse}
+beschriebenen Profilings untersucht.
+Dazu werden mehrere Modelle dieser Art
 optimiert, während der Profiler protokolliert, in welchen Methoden sich wie
 lange aufgehalten wurde. Anschließend muss beurteilt werden, ob die Zeit,
 welche in dieser Methode benötigt wird, erwartbar ist oder sie geringer sein
 sollte. Beziehungsweise, ob es eine Möglichkeit gibt diesen Teil des
 Algorithmus zu beschleunigen.
+
+Wurde eine Optimierungsmöglichkeit gefunden und umgesetzt, kann mit einem
+Benchmark, welcher reelle Modelle nutzt validiert werden, ob die Veränderung
+eine reale Verbesserung verursacht hat. \todo{Entfernen?}
